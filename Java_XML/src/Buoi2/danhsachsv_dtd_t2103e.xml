@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- dtd internal -->
+<!DOCTYPE danhsachsinhvien [
+    <!ELEMENT danhsachsinhvien (lophoc,sinhvien*)>
+    <!ELEMENT lophoc EMPTY>
+    <!ELEMENT sinhvien (hoten,ngaysinh,gioitinh,diachi,sdt,email)>
+    <!ELEMENT hoten (#PCDATA)>
+    <!ELEMENT ngaysinh (#PCDATA)>
+    <!ELEMENT gioitinh (#PCDATA)>
+    <!ELEMENT diachi (thanhpho,quan,sonha)>
+    <!ELEMENT sdt (#PCDATA)>
+    <!ELEMENT email (#PCDATA)>
+    <!ELEMENT tinh (#PCDATA)>
+    <!ELEMENT huyen (#PCDATA)>
+    <!ELEMENT xa (#PCDATA)>
+    <!ELEMENT diachicuthe (#PCDATA)>
+
+    <!ATTLIST danhsachsinhvien tenlop CDATA #REQUIRED>
+    <!ATTLIST danhsachsinhvien truonghoc CDATA #FIXED "FPTAptech">
+    <!ATTLIST sinhvien masv ID #REQUIRED>
+]>

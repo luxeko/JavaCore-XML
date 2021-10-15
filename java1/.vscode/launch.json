@@ -1,0 +1,91 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Bai2",
+            "request": "launch",
+            "mainClass": "Buoi6.Bai2",
+            "projectName": "Buoi3_69c99ff3"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Buoi5.Main",
+            "projectName": "Buoi3_69c99ff3"
+        },
+        {
+            "type": "java",
+            "name": "Launch mainBook",
+            "request": "launch",
+            "mainClass": "Buoi5.mainBook",
+            "projectName": "Buoi3_69c99ff3"
+        },
+        {
+            "type": "java",
+            "name": "Launch TinhCvsS",
+            "request": "launch",
+            "mainClass": "Buoi4.TinhCvsS",
+            "projectName": "Buoi3_69c99ff3"
+        },
+        {
+            "type": "java",
+            "name": "Launch Caculator",
+            "request": "launch",
+            "mainClass": "Buoi4.Caculator",
+            "projectName": "Buoi3_69c99ff3"
+        },
+        {
+            "type": "java",
+            "name": "Launch SinhVien",
+            "request": "launch",
+            "mainClass": "Buoi4.SinhVien",
+            "projectName": "Buoi3_69c99ff3"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "Buoi2.App",
+            "projectName": "Buoi3_69c99ff3"
+        },
+        {
+            "type": "java",
+            "name": "Launch DamLaKheo",
+            "request": "launch",
+            "mainClass": "Buoi2.DamLaKheo",
+            "projectName": "Buoi3_69c99ff3"
+        },
+        {
+            "type": "java",
+            "name": "Launch PtBacHai",
+            "request": "launch",
+            "mainClass": "Buoi2.PtBacHai",
+            "projectName": "Buoi3_69c99ff3"
+        },
+        {
+            "type": "java",
+            "name": "Launch test",
+            "request": "launch",
+            "mainClass": "Buoi2.test",
+            "projectName": "Buoi3_69c99ff3"
+        },
+        {
+            "type": "java",
+            "name": "Launch Caculator",
+            "request": "launch",
+            "mainClass": "Buoi3.Caculator",
+            "projectName": "Buoi3_69c99ff3"
+        }
+    ]
+}

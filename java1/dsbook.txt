@@ -1,0 +1,6 @@
+b001, Cuon theo chieu gio, 120000, DA
+b002, Tom & Jerry, 50000, DA
+b003, Conan, 100000 vnd, DA
+Nangam
+2021
+b004, Lap trinh java, 130000 usd, James

@@ -1,0 +1,5 @@
+Th001, Duc Anh, 28/02/1999, 10, Gioi
+Th002, Ngoc Anh, 28/12/2000, 6, Trung binh
+Th003, Phuong Anh, 04/02/2000, 10, Gioi
+Th004, Ngoc Linh, 06/08/1999, 3, Yeu
+Th005, Mai Trang, 22/01/2000, 8, Kha

@@ -1,0 +1,1 @@
+Mã kh: 001,  Tên kh: ducanh,  Loại kh: Cá nhân,  Số tk: 00123456,  Ngày sinh: Sun Feb 28 00:00:00 ICT 1999,  CMT: 123,  Ngày tạo tk: Thu Sep 16 14:49:32 ICT 2021,  Số tiền trong tk: 10000.0Mã kh: 001,  Tên kh: ducanh,  Loại kh: Cá nhân,  Số tk: 00123456,  Ngày sinh: Sun Feb 28 00:00:00 ICT 1999,  CMT: 12345,  Ngày tạo tk: Thu Sep 16 14:51:02 ICT 2021,  Số tiền trong tk: 1000.0
