@@ -45,6 +45,7 @@ select id, maKH, tenKH, CMT, soDT, email, CONVERT(date, ngaySinh, 105) , gioiTin
 select * from KhachHang
 select * from TaiKhoan
 select * from GiaoDich
+select soTK, trangThai from TaiKhoan where soTK = 123456
 Go
 create proc CustomerUpdate(
 	@maKH varchar(20),
@@ -124,8 +125,29 @@ begin
 			set @message_response = 'Thao tác that bai';
 		end;
 end;
-
--- G?i th? t?c procedure
+create proc 
+create proc TrangThaiUpdate(
+	@soTK varchar(6),
+	@loaiTK varchar(20),
+	@trangThai varchar(20),
+	@code_response int out,
+	@message_response nvarchar(100) out
+) as
+begin
+	declare @checkTK int;
+	set @checkTK = (select count(@trangThai) from TaiKhoan where soTK = @soTK);
+	if @checkTK > 0
+		begin
+			update TaiKhoan set trangThai = @trangThai  where soTK = @soTK;
+			set @code_response = 1;
+			set @message_response = 'Doi trang thai thanh Active thanh cong';
+		end;
+	else
+		begin
+			set @code_response = 0;
+			set @message_response = 'Thao tac that bai';
+		end;
+end;
 
 
 
