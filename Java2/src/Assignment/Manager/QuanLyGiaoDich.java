@@ -16,6 +16,7 @@ import Java2.src.Assignment.Obj.TaiKhoan;
 import Java2.src.Assignment.Variable.ConnectionDB;
 
 public class QuanLyGiaoDich implements IGiaoDichDao {
+    List<GiaoDich> inGiaoDich = new ArrayList<GiaoDich>();
     Connection con = ConnectionDB.getInstance().getConnection();
     private static Scanner sc = new Scanner(System.in);
     private SimpleDateFormat sdf_sql = new SimpleDateFormat("yyyy-MM-dd");
@@ -214,5 +215,14 @@ public class QuanLyGiaoDich implements IGiaoDichDao {
 		} else
 			System.out.println("ID khách hàng không tồn tại!");
 	}
-    
+    public void layGiaoDich() {
+        if(con == null){
+            System.out.println("Connection failed!");
+        }
+        String sql = "Exec getMaKh ? ? ";
+
+    }
+    public void vietGiaoDich(){
+        
+    }
 }

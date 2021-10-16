@@ -24,9 +24,10 @@ public class TaiKhoan {
         this.kh_id = kh_id;
     }
 
-    public TaiKhoan(String soTK, String loaiTK) {
+    public TaiKhoan(String soTK, String loaiTK, String trangThai) {
         this.soTK = soTK;
         this.loaiTK = loaiTK;
+        this.trangThai = trangThai;
     }
     public TaiKhoan(String soTK, Double soTien) {
       this.soTK = soTK;
@@ -104,56 +105,64 @@ public class TaiKhoan {
         QuanLyTaiKhoan qltk = new QuanLyTaiKhoan();
         List<KhachHang> listKhachHang = qlkh.displayListKhachHang();
         List<TaiKhoan> listTaiKhoan = qltk.displayListTaiKhoan();
-        while (true) {
-            int count = 0;
-            System.out.println("Nhập ID khách hàng: ");
-            try {
-                this.kh_id = Integer.parseInt(sc.nextLine());
-                for(KhachHang kh : listKhachHang){
-                    if(this.kh_id == kh.getId()){
-                        System.out.println(kh.toString());
-                        count++;
-                    }
+        int count = 0;
+        System.out.println("Nhập ID khách hàng: ");
+        try {
+            this.kh_id = Integer.parseInt(sc.nextLine());
+            for(KhachHang kh : listKhachHang){
+                if(this.kh_id == kh.getId()){
+                    kh.output();
+                    count++;
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("ID phải là kiểu số");
             }
-            if(count > 0){
-                int type;
-                int checkTK = 0;
-                //check kh_id đã tồn tại chưa
-                for(TaiKhoan tk : listTaiKhoan){
-                    if(this.kh_id == tk.getKh_id()){
-                        checkTK++; 
-                    }
-                }
-                //Chưa có tk
-                if(checkTK == 0){
-                    inputGeneral();
-                    this.loaiTK = "TraTruoc";
-                    type = 0;
-                    if(type == 0){
-                        this.hanMuc = 1000000;
-                    }
-                    break;
-                }else if(checkTK == 1){
-                    System.out.println("Bạn đã có tài khoản trả trước");
-                    System.out.println("Tạo tài khoản trả sau (ViSA): ");
-                    inputGeneral();
-                    this.loaiTK = "TraSau (VISA)";
-                    type = 1;
-                    if(type == 1){
-                        this.hanMuc = 30000000;
-                    }   
-                    break;
-                }else{
-                    System.out.println("Bạn đã có 2 tài khoản! Không thể tạo thêm");
-                }
-            }                 
-            else{
-                System.out.println("ID không tồn tại!");
-            } 
+        } catch (NumberFormatException e) {
+            System.out.println("ID phải là kiểu số");
         }
+        if(count > 0){
+            int type;
+            int checkTK = 0;
+            //check kh_id đã tồn tại chưa
+            for(TaiKhoan tk : listTaiKhoan){
+                if(this.kh_id == tk.getKh_id()){
+                    checkTK++; 
+                }
+            }
+            //Chưa có tk
+            if(checkTK == 0){
+                inputGeneral();
+                this.loaiTK = "TraTruoc";
+                type = 0;
+                if(type == 0){
+                    this.soTien = 0d;
+                    this.hanMuc = 1000000;
+                }
+            }else if(checkTK == 1){
+                String chonVisa;
+                System.out.println("Bạn đã có tài khoản trả trước");
+                System.out.println("Tạo tài khoản trả sau (ViSA)");
+                while (true) {
+                    System.out.println("Đồng ý. Chọn 'y' ");   
+                    chonVisa = sc.nextLine();
+                    if(chonVisa.equals("y")){
+                        inputGeneral();
+                        this.loaiTK = "TraSau (VISA)";
+                        type = 1;
+                        if(type == 1){
+                            this.hanMuc = 30000000;
+                            this.soTien =  30000000d;
+                        }   
+                        break;
+                    }else{
+                        break;
+                    }
+                }
+            }else{
+                System.out.println("Bạn đã có 2 tài khoản! Không thể tạo thêm");
+            }
+        }               
+        else{
+            System.out.println("ID không tồn tại!");
+        } 
     }
     public void inputGeneral() {
         QuanLyTaiKhoan qltk = new QuanLyTaiKhoan();
@@ -213,19 +222,7 @@ public class TaiKhoan {
                 System.out.println("Ngày tạo ko hợp lệ!");;
             }
         }
-        while (true) {
-            System.out.println("Nhập số tiền trong tài khoản: ");
-            try {
-                this.soTien = Double.parseDouble(sc.nextLine());
-                if(this.soTien > 0){
-                    break;
-                }else{
-                    System.out.println("Số tiền không hợp lệ");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Số tiền phải là khiểu số");
-            }
-        }
+        this.soTien = 0.0;
 	}
     public void output(){
         System.out.format("%-10s %-10s %-10s %-15s %-15s %-20s %-20s %-20s\n",  
@@ -237,7 +234,6 @@ public class TaiKhoan {
                             this.ngayTao,
                             this.soTien,
                             this.hanMuc);
-    }
-    
+    }    
 }
 

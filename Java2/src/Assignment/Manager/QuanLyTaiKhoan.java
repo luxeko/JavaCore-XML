@@ -60,31 +60,49 @@ public class QuanLyTaiKhoan implements ITaiKhoanDao {
         QuanLyGiaoDich qlgd = new QuanLyGiaoDich();
         Double napTien;
         String soTK;
+        String trangThai = "Active";
         System.out.println("Nhập số tài khoản: ");
         soTK = sc.nextLine();
+        String chon = "";
         //lấy ra số tiền của tài khoản
         Double amount = queryAmountByAccountId(soTK);
         //check tài khoản tồn tại hay ko? true == tồn tại
         if(validateAccount(soTK) == true){
            //check loại tài khoản là thường hay visa? == 0 là tk thường
            if(checkLoaiTK(soTK) == 0){ 
-               System.out.println("Số tiền trong tài khoản " + soTK + " là : " +  amount);
-               System.out.println("Nhập số tiền thêm vào: ");
-               try {
-                  napTien = Double.parseDouble(sc.nextLine());
-                  if(napTien > 0){
-                     amount+=(Double) napTien;
-                     //sau khi nạp thì update lại số tiền trong database
-                     UpdateAmountByAccountId(soTK, amount);
-                     qlgd.createGiaoDich(soTK, "NapTien", napTien);
-                  }else{
-                     System.out.println("Số tiền bắt buộc phải > 0");
-                  }
-               } catch (NumberFormatException e) {
-                  System.out.println("Số tiền phải là kiểu số");
+               //check xem tài khoản đã actice? == 1 là disable, 0 là active
+               if(checkActive(soTK) == false){
+                   System.out.println("Tài khoản của bạn đang Disable! Bạn có muốn Active? Chọn 'y' để đồng ý");
+                   while (true) {
+                        chon = sc.nextLine();
+                        if(chon.equals("y")){
+                            System.out.println("Active thành công");
+                            UpdateTrangThai(soTK, "TraTruoc", trangThai);
+                            break;
+                        }else{
+                            break;
+                        }
+                   }
+               }else if(checkActive(soTK) == true){
+                    System.out.println("Số tiền trong tài khoản " + soTK + " là : " +  amount);
+                    System.out.println("Nhập số tiền thêm vào: ");
+                    try {
+                    napTien = Double.parseDouble(sc.nextLine());
+                    if(napTien > 0){
+                        amount+=(Double) napTien;
+                        //sau khi nạp thì update lại số tiền trong database
+                        UpdateAmountByAccountId(soTK, amount);
+                        qlgd.createGiaoDich(soTK, "NapTien", napTien);
+                    }else{
+                        System.out.println("Số tiền bắt buộc phải > 0");
+                    }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Số tiền phải là kiểu số");
+                    }
                }
-           }else{
-            System.out.println("Bạn chỉ có thể nạp tiền vào tài khoản trả trước!");
+               
+            }else{
+                System.out.println("Bạn chỉ có thể nạp tiền vào tài khoản trả trước!");
             }
         }else{
             System.out.println("Tài khoản không tồn tại!");
@@ -96,6 +114,8 @@ public class QuanLyTaiKhoan implements ITaiKhoanDao {
         QuanLyGiaoDich qlgd = new QuanLyGiaoDich();
         Double rutTien;
         String soTK;
+        String trangThai = "Active";
+        String chon = "";
         System.out.println("Nhập số tài khoản: ");
         soTK = sc.nextLine();
         //lấy ra số tiền của tài khoản
@@ -105,58 +125,77 @@ public class QuanLyTaiKhoan implements ITaiKhoanDao {
         if(validateAccount(soTK) == true){
             //check loại tài khoản là thường hay visa?  0: là tk thường, 1: visa
             if(checkLoaiTK(soTK) == 0){
-                System.out.println("Số tiền có trong tài khoản: " + (Double)amount);
-                System.out.println("Hạn mức: " +  hanMuc);
-                System.out.println("Nhập số tiền muốn rút: ");
-                try {
-                    rutTien = Double.parseDouble(sc.nextLine());
-                    if(rutTien > 0){
-                        if(rutTien <= hanMuc){
-                            if(rutTien <= amount){
-                                amount -= (Double) rutTien;
-                                UpdateAmountByAccountId(soTK, amount);
-                                qlgd.createGiaoDich(soTK, "RutTien", rutTien);
+                if(checkActive(soTK) == false){
+                    System.out.println("Tài khoản của bạn đang Disable! Bạn có muốn Active? Chọn 'y' để đồng ý");
+                    while (true) {
+                         chon = sc.nextLine();
+                         if(chon.equals("y")){
+                             System.out.println("Active thành công");
+                             UpdateTrangThai(soTK, "TraTruoc", trangThai);
+                             break;
+                         }else{
+                             break;
+                         }
+                    }
+                }else{
+                    System.out.println("Số tiền có trong tài khoản: " + (Double)amount);
+                    System.out.println("Hạn mức: " +  hanMuc);
+                    System.out.println("Nhập số tiền muốn rút: ");
+                    try {
+                        rutTien = Double.parseDouble(sc.nextLine());
+                        if(rutTien > 0){
+                            if(rutTien <= hanMuc){
+                                if(rutTien <= amount){
+                                    amount -= (Double) rutTien;
+                                    UpdateAmountByAccountId(soTK, amount);
+                                    qlgd.createGiaoDich(soTK, "RutTien", rutTien);
+                                }else{
+                                    System.out.println("Số tiền trong tài khoản không đủ!");
+                                }
                             }else{
-                                System.out.println("Số tiền trong tài khoản không đủ!");
+                                System.out.println("Bạn không được rút quá hạn mức: " + hanMuc);
+    
                             }
                         }else{
-                            System.out.println("Bạn không được rút quá hạn mức: " + hanMuc);
-
+                            System.out.println("Số tiền phải là số dương");
                         }
-                    }else{
-                        System.out.println("Số tiền phải là số dương");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Số tiền phải là kiểu số!");
                     }
-                } catch (NumberFormatException e) {
-                    System.out.println("Số tiền phải là kiểu số!");
                 }
-
             }else{
-                System.out.println("Số tiền có trong tài khoản: " + (Double) amount);
-                System.out.println("Hạn mức: " +  hanMuc);
-                System.out.println("Nhập số tiền muốn rút: ");
-                try {
-                    rutTien = Double.parseDouble(sc.nextLine());
-                    if(rutTien > 0){
-                        if(amount >= rutTien && amount >= 0){
-                            amount -= (Double) rutTien;
-                            UpdateAmountByAccountId(soTK, amount);
-                            qlgd.createGiaoDich(soTK, "RutTien", rutTien);
-                        }else{
-                            System.out.println("Số dư tài khoản không đủ nên sẽ trừ sang hạn mức " + hanMuc + " của bạn");
-                            if(hanMuc >= rutTien && hanMuc > 0){
-                                hanMuc += (amount - rutTien) ;
-                                amount = 0.0d;
+                if(checkActive(soTK) == false){
+                    System.out.println("Tài khoản của bạn đang Disable! Bạn có muốn Active? Chọn 'y' để đồng ý");
+                    while (true) {
+                         chon = sc.nextLine();
+                         if(chon.equals("y")){
+                             System.out.println("Active thành công");
+                             UpdateTrangThai(soTK, "TraSau (VISA)", trangThai);
+                             break;
+                         }else{
+                             break;
+                         }
+                    }
+                }else{
+                    System.out.println("Hạn mức: " +  hanMuc);
+                    System.out.println("Nhập số tiền muốn rút: ");
+                    try {
+                        rutTien = Double.parseDouble(sc.nextLine());
+                        if(rutTien > 0){
+                            if(amount >= rutTien && amount >= 0){
+                                amount -= (Double) rutTien;
+                                hanMuc -= (Double) rutTien;
                                 checkHanMuc(soTK, amount, hanMuc);
                                 qlgd.createGiaoDich(soTK, "RutTien", rutTien);
                             }else{
                                 System.out.println("Bạn đã rút tối đa hạn mức cho phép!");
                             }
+                        }else{
+                            System.out.println("Số tiền phải là số dương");
                         }
-                    }else{
-                        System.out.println("Số tiền phải là số dương");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Số tiền phải là kiểu số!");
                     }
-                } catch (NumberFormatException e) {
-                    System.out.println("Số tiền phải là kiểu số!");
                 }
             }
         }else{
@@ -184,7 +223,7 @@ public class QuanLyTaiKhoan implements ITaiKhoanDao {
             System.out.println(mess_res);
         }else{
             System.out.println(mess_res);
-            System.out.println("Số tiền có trong tài khoản: " + (Double) soTien);
+            System.out.println("Số tiền còn trong tài khoản: " + (Double) soTien);
         }
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -278,9 +317,63 @@ public class QuanLyTaiKhoan implements ITaiKhoanDao {
         }
         // ConnectionDB.getInstance().closeConnection(con);
         return tk.getHanMuc();
+    }
+
+    //Hàm lấy ra trạng thái tài khoản
+    public boolean checkActive(String soTK) {
+        List<TaiKhoan> listTaiKhoan = new ArrayList<TaiKhoan>();
+        if (con == null){
+            System.out.println("Connection failed");
         }
+        String sql = "select soTK,loaiTK, trangThai from TaiKhoan where soTK = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, soTK);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                TaiKhoan tk = new TaiKhoan(rs.getString("soTK"), rs.getString("loaiTK"), rs.getString("trangThai"));
+                listTaiKhoan.add(tk);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for(TaiKhoan tk : listTaiKhoan){
+            if(tk.getTrangThai().equals("Active"))
+            return true;
+        }
+        return false;
+    }
 
-
+    //Hàm update trạng thái vào database
+    public void UpdateTrangThai(String soTK, String loaiTK, String trangThai) {
+        // Connection con = ConnectionDB.getInstance().getConnection();
+		if (con == null){
+            System.out.println("Connection failed");
+        }
+		String sql = "exec TrangThaiUpdate ?, ?, ?, ?, ?";
+		try {
+			CallableStatement cs = con.prepareCall(sql);
+			cs.setString(1, soTK);
+			cs.setString(2, loaiTK);
+            cs.setString(3, trangThai);
+			cs.registerOutParameter(4, Types.INTEGER);
+			cs.registerOutParameter(5, Types.NVARCHAR);
+			cs.executeUpdate();
+			int code_res = cs.getInt(4);
+			String mess_res = cs.getString(5);
+			cs.close();
+			if (code_res == 0){
+            System.out.println(mess_res);
+        }else{
+            System.out.println(mess_res);
+        }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// ConnectionDB.getInstance().closeConnection(con);
+	}
     //hàm check loại tài khoản
     //nếu là TraTruoc thì return 0
     //ngược lại return 1;
@@ -290,13 +383,13 @@ public class QuanLyTaiKhoan implements ITaiKhoanDao {
         if(con == null){
             System.out.println("Connection failed!");
         }
-        String sql = "select soTK, loaiTK from TaiKhoan where soTK = ?";
+        String sql = "select soTK, loaiTK, trangThai from TaiKhoan where soTK = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, soTK);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                TaiKhoan tk = new TaiKhoan(rs.getString("soTK"), rs.getString("loaiTK"));
+                TaiKhoan tk = new TaiKhoan(rs.getString("soTK"), rs.getString("loaiTK"), rs.getString("trangThai"));
                 listTaiKhoan.add(tk);
             }
             rs.close();
