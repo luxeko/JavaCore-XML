@@ -125,7 +125,7 @@ begin
 			set @message_response = 'Thao tác that bai';
 		end;
 end;
-create proc 
+
 create proc TrangThaiUpdate(
 	@soTK varchar(6),
 	@loaiTK varchar(20),
@@ -156,7 +156,9 @@ drop table GiaoDich
 drop table TaiKhoan
 drop table KhachHang
 
-
 drop proc CustomerUpdate
 drop proc TaiKhoanUpdate
 drop proc HanMucUpdate
+
+delete from TaiKhoan where id = 6;
+select * from TaiKhoan

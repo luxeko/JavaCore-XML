@@ -29,15 +29,14 @@ public class QuanLyTaiKhoan implements ITaiKhoanDao {
             System.out.println("Connection failed!");
         }
         //B2: THUC HIEN SQL
-        String sql_add = "insert into TaiKhoan (kh_id, soTK, loaiTK, trangThai, ngayTao, soTien, hanMuc) values (?, ?, ?, ?, ?, ?, ?)";
+        String sql_add = "insert into TaiKhoan (kh_id, soTK, loaiTK, trangThai, ngayTao, soTien, hanMuc) values (?, ?, ?, ?, convert(date, ?, 103), ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql_add);
-            Date date_sql = Date.valueOf(sdf_sql.format(tk.getNgayTao()));
             ps.setInt(1,tk.getKh_id());
             ps.setString(2,tk.getSoTK());
             ps.setString(3,tk.getLoaiTK());
             ps.setString(4,tk.getTrangThai());
-            ps.setDate(5,date_sql);
+            ps.setString(5,tk.getNgayTao2());
             ps.setDouble(6,tk.getSoTien());;
             ps.setDouble(7,tk.getHanMuc());
             int result = ps.executeUpdate();
