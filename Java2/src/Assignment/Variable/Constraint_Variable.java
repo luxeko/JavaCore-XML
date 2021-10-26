@@ -22,7 +22,7 @@ public class Constraint_Variable {
 		if(rs.containsKey("database_PassWord")) {
 			passwordDB = rs.getString("database_PassWord");
 		}else {
-			passwordDB ="123456";
+			passwordDB ="Khongnoiduoc1";
 		}
 	}
 }
