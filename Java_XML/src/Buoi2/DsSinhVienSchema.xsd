@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="danhsachsinhvien">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Lophoc">
+                    <xs:complexType>
+                        <xs:attribute name="phonghoc" type="xs:string" use="required"></xs:attribute>
+                        <xs:attribute name="khoahoc" type="xs:string" use="required"></xs:attribute>
+                        <xs:attribute name="namhoc">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    <xs:minInclusive value="2000"></xs:minInclusive>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="giangvien" type="xs:string" use="optional"></xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sinhvien" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="hoten" type="xs:string" nillable="false"></xs:element>
+                            <xs:element name="ngaysinh">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[0-9]{2}/[0-9]{2}/[0-9]{4}"></xs:pattern>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="gioitinh">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="Nam/Nữ/Khác"></xs:pattern>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="diachi">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="tinh" type="xs:string"></xs:element>
+                                        <xs:element name="huyen" type="xs:string"></xs:element>
+                                        <xs:element name="xa" type="xs:string"></xs:element>
+                                        <xs:element name="diachicuthe" type="xs:string"></xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="sodt">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="0[0-9]{9}"></xs:pattern>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="email">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[a-zA-Z]+[0-9]*@[a-zA-Z]+.[a-zA-Z]+"></xs:pattern>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="masv" type="xs:ID"></xs:attribute>
+
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

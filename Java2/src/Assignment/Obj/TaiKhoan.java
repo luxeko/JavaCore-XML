@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 import Java2.src.Assignment.Manager.QuanLyKhachHang;
 import Java2.src.Assignment.Manager.QuanLyTaiKhoan;
+import Java2.src.Assignment.Variable.ConnectionDB;
+
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 
 public class TaiKhoan {
@@ -85,6 +88,9 @@ public class TaiKhoan {
     public Date getNgayTao() {
         return ngayTao;
     }
+    public String getNgayTao2(){
+        return sdf.format(this.ngayTao);
+    }
     public void setNgayTao(Date ngayTao) {
         this.ngayTao = ngayTao;
     }
@@ -100,47 +106,46 @@ public class TaiKhoan {
     public void setHanMuc(int hanMuc) {
         this.hanMuc = hanMuc;
     }
-    public void input() {
+    public void input(){
         QuanLyKhachHang qlkh = new QuanLyKhachHang();
         QuanLyTaiKhoan qltk = new QuanLyTaiKhoan();
         List<KhachHang> listKhachHang = qlkh.displayListKhachHang();
         List<TaiKhoan> listTaiKhoan = qltk.displayListTaiKhoan();
-        int count = 0;
-        System.out.println("Nhập ID khách hàng: ");
-        try {
-            this.kh_id = Integer.parseInt(sc.nextLine());
+        String maKH;
+        Boolean flag1;
+        while (true) {   
+            flag1 = false;     
+            System.out.println("Nhập mã khách hàng: ");
+            maKH = sc.nextLine();
             for(KhachHang kh : listKhachHang){
-                if(this.kh_id == kh.getId()){
-                    kh.output();
-                    count++;
+                //Kiểm tra có tồn tại mã khách hàng
+                if(maKH.equals(kh.getMaKH())){
+                    this.kh_id = kh.getId();
+                    flag1 = true;
                 }
             }
-        } catch (NumberFormatException e) {
-            System.out.println("ID phải là kiểu số");
-        }
-        if(count > 0){
-            int type;
-            int checkTK = 0;
-            //check kh_id đã tồn tại chưa
-            for(TaiKhoan tk : listTaiKhoan){
-                if(this.kh_id == tk.getKh_id()){
-                    checkTK++; 
+            if(flag1 == true){
+                int type;
+                int checkTK = 0;
+                //check kh_id đã tồn tại chưa
+                for(TaiKhoan tk : listTaiKhoan){
+                    if(this.kh_id == tk.getKh_id()){
+                        checkTK++; 
+                    }
                 }
-            }
-            //Chưa có tk
-            if(checkTK == 0){
-                inputGeneral();
-                this.loaiTK = "TraTruoc";
-                type = 0;
-                if(type == 0){
-                    this.soTien = 0d;
-                    this.hanMuc = 1000000;
-                }
-            }else if(checkTK == 1){
-                String chonVisa;
-                System.out.println("Bạn đã có tài khoản trả trước");
-                System.out.println("Tạo tài khoản trả sau (ViSA)");
-                while (true) {
+                //Chưa có tk
+                if(checkTK == 0){
+                    inputGeneral();
+                    this.loaiTK = "TraTruoc";
+                    type = 0;
+                    if(type == 0){
+                        this.soTien = 0d;
+                        this.hanMuc = 1000000;
+                    }
+                }else if(checkTK == 1){
+                    String chonVisa;
+                    System.out.println("Bạn đã có tài khoản trả trước");
+                    System.out.println("Tạo tài khoản trả sau (ViSA)");
                     System.out.println("Đồng ý. Chọn 'y' ");   
                     chonVisa = sc.nextLine();
                     if(chonVisa.equals("y")){
@@ -151,18 +156,20 @@ public class TaiKhoan {
                             this.hanMuc = 30000000;
                             this.soTien =  30000000d;
                         }   
-                        break;
                     }else{
+                        System.out.println("Tạo thất bại");
+                        System.exit(1);
                         break;
                     }
                 }
-            }else{
-                System.out.println("Bạn đã có 2 tài khoản! Không thể tạo thêm");
-            }
-        }               
-        else{
-            System.out.println("ID không tồn tại!");
-        } 
+                else{
+                    System.out.println("Bạn đã có 2 tài khoản! Không thể tạo thêm");
+                }break;
+            }               
+            if(flag1 == false){
+                System.out.println("Mã khách hàng không tồn tại!");
+            } 
+        }
     }
     public void inputGeneral() {
         QuanLyTaiKhoan qltk = new QuanLyTaiKhoan();
@@ -185,7 +192,6 @@ public class TaiKhoan {
             }else{
                 System.out.println("Số tài khoản bắt buộc có 6 chữ số");
             }
-				
 		}
 		while (true) {
             int status;
@@ -222,7 +228,6 @@ public class TaiKhoan {
                 System.out.println("Ngày tạo ko hợp lệ!");;
             }
         }
-        this.soTien = 0.0;
 	}
     public void output(){
         System.out.format("%-10s %-10s %-10s %-15s %-15s %-20s %-20s %-20s\n",  

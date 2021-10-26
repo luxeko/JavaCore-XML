@@ -1,15 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-đây là file chứa danh sách thông tin sinh viên lớp T2103E
- -->
- <danhsachsinhvien tenlop='T2103E'>
- 	<lophoc phonghoc="C5" khoahoc="lap trinh vien fullstack" namhoc='2020' giangvien="Phạm Thị Dung"/>
- 	<!-- 
- 	<phonghoc>C5</phonghoc>
- 	<khoahoc>lap trinh vien fullstack</khoahoc>
- 	<namhoc>2020</namhoc>
- 	<giangvien>Phạm Thị Dung</giangvien>
- 	 -->
+﻿use XMLDemo
+create table sinhvien(
+	id int identity primary key,
+	description xml
+);
+--insert
+insert into sinhvien(description) values ('<danhsachsinhvien tenlop="T2103E">
+ 	<lophoc phonghoc="C5" khoahoc="lap trinh vien fullstack" namhoc="2020" giangvien="Phạm Thị Dung"/>
  	<sinhvien masv="sv001">
  		<hoten>Trần Phương Nam</hoten>
  		<ngaysinh>12/12/2000</ngaysinh>
@@ -49,4 +45,18 @@
  		<sodt>097396485</sodt>
  		<email>namtp@fpt.edu.vn</email>
  	</sinhvien>
- </danhsachsinhvien>
+ </danhsachsinhvien>');
+
+ --query:
+ select * from sinhvien
+
+ select T2.Loc.query('.')
+ From sinhvien
+ CROSS APPLY description.nodes('/danhsachsinhvien/sinhvien') AS T2(Loc);
+
+ select T2.SV.query('.'),
+ SV.value ('@masv', 'varchar(10)') AS masv,
+ SV.value ('hoten[1]', 'nvarchar(50)') hoten
+ From sinhvien
+ CROSS APPLY description.nodes('/danhsachsinhvien/sinhvien') AS T2(SV);
+
