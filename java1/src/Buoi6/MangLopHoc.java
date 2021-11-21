@@ -69,7 +69,7 @@ public class MangLopHoc {
         LopHoc temp;
         for(int i = 0; i < this.count-1; i++){
             for(int j = i+1; j < this.count; j++){
-                 //So sanh giam dan
+                //So sanh giam dan
                 if(this.dsLopHoc[i].getMaLop().compareTo(this.dsLopHoc[j].getMaLop())<0){
 
                 //So sanh tang dan
@@ -83,9 +83,9 @@ public class MangLopHoc {
     }
     public void sumLopHoc(){
         int sum = 0;
-        int quantity;
+        int quantity = 0;
         //So luong lop hoc
-        for(quantity = 1; quantity < this.count; quantity++){
+        for(int i = 0; i < this.count; i++){
             quantity++;
         }
         System.out.println();
@@ -118,7 +118,7 @@ public class MangLopHoc {
         LopHoc temp2;
         for(int i = 0; i < this.count; i++){
             for(int j = i + 1; j < this.count; j++){
-                //Sao xep so luong hoc vien tang dan
+                //Sap xep so luong hoc vien tang dan
                 if(this.dsLopHoc[i].getSoLuongHv() > this.dsLopHoc[j].getSoLuongHv()){
                     temp2 = this.dsLopHoc[i];
                     this.dsLopHoc[i] = this.dsLopHoc[j];
