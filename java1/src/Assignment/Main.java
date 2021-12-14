@@ -12,7 +12,6 @@ public class Main {
         
         do{
             showMenu();
-            System.out.println(System.getProperty("file.encoding", "UTF-8"));
             System.out.print("Choose: ");
             functionID = sc.nextInt();
             sc.nextLine();
@@ -156,7 +155,7 @@ public class Main {
         System.out.println("1. Crud nhóm hàng");
         System.out.println("2. Crud sản phảm");
         System.out.println("3. Crud đơn hàng");
-        System.out.println("4. báo cáo"); 
+        System.out.println("4. Báo cáo"); 
         System.out.println("5. Thoat");      
     }
 }
