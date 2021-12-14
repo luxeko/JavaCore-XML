@@ -3,7 +3,7 @@ package Java2.src.Buoi6.BTVN.BaiTapJDBC2;
 import java.util.Scanner;
 
 public class main {
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int functionID;
         boolean flag = true;

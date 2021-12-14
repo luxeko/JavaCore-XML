@@ -16,7 +16,7 @@ public class ThreadDocFile {
     }
 }
 class ThreadOne extends Thread {
-    private String nameThread;
+    public String nameThread;
     public ThreadOne(String nameThread){
         this.nameThread = nameThread;
     }

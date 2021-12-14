@@ -45,7 +45,6 @@ public class DsNhomHang {
             System.out.println("Tiếp tục tìm? Nhấn 'n' để thoát");
             confirm = sc.nextLine();
         }while(!confirm.equals("n"));
-        sc.close();
     }
     public void output(){
         for(NhomHang nhomHang : dsNhomHang){

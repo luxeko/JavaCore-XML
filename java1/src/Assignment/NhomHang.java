@@ -48,7 +48,7 @@ public class NhomHang {
             } catch (Exception e) {
                 System.out.println("VAT phải là kiểu số");
             }
-        }sc.close();
+        }
     }
     public void output(){
         System.out.println("==============================");

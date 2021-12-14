@@ -105,7 +105,7 @@ public class SanPham{
             } catch (Exception e) {
                 System.out.println("GIá phải là kiểu số");
             }
-        }sc.close();
+        }
     }
     
     public void output() {

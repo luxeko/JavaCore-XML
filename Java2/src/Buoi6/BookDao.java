@@ -124,7 +124,7 @@ public class BookDao {
 				ps.setDouble(3, book.getPrice());
 				ps.addBatch();
 			}
-			int[] result = ps.executeBatch();
+			// int[] result = ps.executeBatch();
 			ps.close();
 			// b3: xu ly ket qua
 			

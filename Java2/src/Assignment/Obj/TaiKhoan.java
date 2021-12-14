@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import Java2.src.Assignment.Manager.QuanLyKhachHang;
 import Java2.src.Assignment.Manager.QuanLyTaiKhoan;
-import Java2.src.Assignment.Variable.ConnectionDB;
 
-import java.sql.Connection;
 import java.text.SimpleDateFormat;
 
 public class TaiKhoan {

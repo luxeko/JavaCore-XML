@@ -1,5 +1,4 @@
 package java1.src.Assignment;
-
 import java.util.Scanner;
 
 public class Main {
@@ -10,8 +9,10 @@ public class Main {
         DsNhomHang dsnh = new DsNhomHang();
         DsSanPham dssp = new DsSanPham();
         DsDonHang dsdh = new DsDonHang();
+        
         do{
             showMenu();
+            System.out.println(System.getProperty("file.encoding", "UTF-8"));
             System.out.print("Choose: ");
             functionID = sc.nextInt();
             sc.nextLine();
@@ -151,11 +152,11 @@ public class Main {
         sc.close();
     }
     public static void showMenu() {
-        System.out.println("======= Quản Lý Bán Hàng =======");
-        System.out.println("1. Crud Nhóm Hàng");
-        System.out.println("2. Crud Sản Phảm");
-        System.out.println("3. Crud Đơn Hàng");
-        System.out.println("4. Báo cáo"); 
+        System.out.println("======= Quản lý bán hàng =======");
+        System.out.println("1. Crud nhóm hàng");
+        System.out.println("2. Crud sản phảm");
+        System.out.println("3. Crud đơn hàng");
+        System.out.println("4. báo cáo"); 
         System.out.println("5. Thoat");      
     }
 }

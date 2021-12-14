@@ -80,8 +80,6 @@ public class DonHang {
             System.out.println("Bạn có muốn thêm sản phẩm vào đơn hàng? Nhấn 'n' để thoát");
             confirm = sc.nextLine();
         }while(!confirm.equalsIgnoreCase("n"));
-        sc.close();
-
     }
     String xuatDonHang(){
         String s = "";

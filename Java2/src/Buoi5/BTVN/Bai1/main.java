@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class main {
-    public static void main(String[] args) {
+    public static void Main(String[] args) {
         dsDanhBa dsDB = new dsDanhBa();
         String fileName = "E:\\Java\\Java2\\src\\Buoi5\\BTVN\\Bai1\\danhba.txt";
         Scanner sc = new Scanner(System.in);

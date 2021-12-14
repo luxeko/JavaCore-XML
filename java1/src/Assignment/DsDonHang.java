@@ -112,7 +112,6 @@ public class DsDonHang {
         }catch(InputMismatchException e){
             System.out.println("Năm phải là kiểu số!");
         }
-        sc.close();
     }
 
     public ArrayList<DonHang> layDsDonHangTheoNam(int nam){
