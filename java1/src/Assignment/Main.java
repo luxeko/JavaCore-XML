@@ -12,7 +12,6 @@ public class Main {
         
         do{
             showMenu();
-            System.out.println(System.getProperty("file.encoding", "UTF-8"));
             System.out.print("Choose: ");
             functionID = sc.nextInt();
             sc.nextLine();
