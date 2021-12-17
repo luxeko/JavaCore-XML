@@ -148,7 +148,6 @@ public class Main {
             }
             if(functionID == 5) flag = false;
         }while(flag == true);
-        sc.close();
     }
     public static void showMenu() {
         System.out.println("======= Quản lý bán hàng =======");

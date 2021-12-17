@@ -43,7 +43,6 @@ public class DsSanPham {
             System.out.println("Tiếp tục tìm? Nhấn 'n' để thoát");
             confirm = sc.nextLine();
         }while(!confirm.equals("n"));
-        sc.close();
     }
     public void output(){
         for(SanPham sp : dsSanPham){
@@ -75,7 +74,6 @@ public class DsSanPham {
             System.out.println("Tiếp tục nhập? Nhấn 'n' để thoát");
             confirm = sc.nextLine();
         }while (!confirm.equals("n"));
-        sc.close();
     }
 
 }
