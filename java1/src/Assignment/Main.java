@@ -19,7 +19,7 @@ public class Main {
                 case 1:
                     boolean check = true;
                     int choose;
-                    do{
+                    do{ 
                         System.out.println("1.1 Thêm nhóm hàng mới");
                         System.out.println("1.2 Hiển thị danh sách nhóm hàng");
                         System.out.println("1.3 Tìm kiếm nhóm hàng theo mã");
