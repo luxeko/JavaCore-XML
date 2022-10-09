@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+đây là file chứa danh sách thông tin sinh viên lớp T2103E
+ -->
+ <danhsachsinhvien tenlop='T2103E'>
+ 	<lophoc phonghoc="C5" khoahoc="lap trinh vien fullstack" namhoc='2020' giangvien="Phạm Thị Dung"/>
+ 	<!-- 
+ 	<phonghoc>C5</phonghoc>
+ 	<khoahoc>lap trinh vien fullstack</khoahoc>
+ 	<namhoc>2020</namhoc>
+ 	<giangvien>Phạm Thị Dung</giangvien>
+ 	 -->
+ 	<sinhvien masv="sv001">
+ 		<hoten>Trần Phương Nam</hoten>
+ 		<ngaysinh>12/12/2000</ngaysinh>
+ 		<gioitinh>Nam</gioitinh>
+ 		<diachi>
+ 			<tinh>Hà Nội</tinh>
+ 			<huyen>Cầu Giấy</huyen>
+ 			<xa>Dịch Vọng Hậu</xa>
+ 			<diachicuthe>Số 8 - Tôn Thất Thuyết</diachicuthe>
+ 		</diachi>
+ 		<sodt>097396485</sodt>
+ 		<email>namtp@fpt.edu.vn</email>
+ 	</sinhvien>
+ 	<sinhvien masv="sv002">
+ 		<hoten>Đỗ Đức Thắng</hoten>
+ 		<ngaysinh>03/04/1996</ngaysinh>
+ 		<gioitinh>Nam</gioitinh>
+ 		<diachi>
+ 			<tinh>Hà Nội</tinh>
+ 			<huyen>Cầu Giấy</huyen>
+ 			<xa>Dịch Vọng Hậu</xa>
+ 			<diachicuthe>Số 8 - Tôn Thất Thuyết</diachicuthe>
+ 		</diachi>
+ 		<sodt>097396485</sodt>
+ 		<email>namtp@fpt.edu.vn</email>
+ 	</sinhvien>
+ 	<sinhvien masv="sv003">
+ 		<hoten>Trần Ngọc Thiện</hoten>
+ 		<ngaysinh>10/12/1998</ngaysinh>
+ 		<gioitinh>Nam</gioitinh>
+ 		<diachi>
+ 			<tinh>Hà Nội</tinh>
+ 			<huyen>Cầu Giấy</huyen>
+ 			<xa>Dịch Vọng Hậu</xa>
+ 			<diachicuthe>Số 8 - Tôn Thất Thuyết</diachicuthe>
+ 		</diachi>
+ 		<sodt>097396485</sodt>
+ 		<email>namtp@fpt.edu.vn</email>
+ 	</sinhvien>
+ </danhsachsinhvien>
